@@ -1,0 +1,12 @@
+name: akworld-hprofile
+on: workflow_dispatch
+jobs:
+  Testing:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Code Checkout
+        uses: actions/checkout@v4
+      - name: maven test
+        run: mvn text
+      - name: Checkstyle
+        run: mvn checkstyle:checkstyle
