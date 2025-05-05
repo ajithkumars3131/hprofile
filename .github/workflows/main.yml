@@ -7,6 +7,6 @@ jobs:
       - name: Code Checkout
         uses: actions/checkout@v4
       - name: maven test
-        run: mvn text
+        run: mvn test
       - name: Checkstyle
         run: mvn checkstyle:checkstyle
