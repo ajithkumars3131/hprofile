@@ -58,8 +58,8 @@ jobs:
              secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
              registry: ${{ secrets.REGISTRY }}
              repo: hprofile
-             region: ${{ env.AWS_REGION }}
-             tags: latest,${{ github.run_number }}
+             region: ${{ env.AWS_REGION }},
+             tags: latest,${{ github.run_number }},${{ env.BUILD_TIMESTAMP }}
              daemon_off: false
              dockerfile: ./Dockerfile
              context: .
