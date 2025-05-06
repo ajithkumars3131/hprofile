@@ -1,5 +1,7 @@
 name: akworld-hprofile
 on: workflow_dispatch
+env: 
+  AWS_REGION: us-east-1
 jobs:
   Testing:
     runs-on: ubuntu-latest
@@ -51,6 +53,8 @@ jobs:
               sed -i "s/^jdbc.username.*$/jdbc.username\=${{ secrets.RDS_USER }}/" src/main/resources/application.properties
               sed -i "s/^jdbc.password.*$/jdbc.password\=${{ secrets.RDS_PASS }}/" src/main/resources/application.properties
               sed -i "s/db01/${{ secrets.RDS_ENDPOINT }}/" src/main/resources/application.properties
+          - name: Set build timestamp
+            run: echo "BUILD_TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
           - name: Build & Upload image to ECR
             uses: appleboy/docker-ecr-action@master
             with:
@@ -58,7 +62,7 @@ jobs:
              secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
              registry: ${{ secrets.REGISTRY }}
              repo: hprofile
-             region: ${{ env.AWS_REGION }},
+             region: ${{ env.AWS_REGION }}
              tags: latest,${{ github.run_number }},${{ env.BUILD_TIMESTAMP }}
              daemon_off: false
              dockerfile: ./Dockerfile
