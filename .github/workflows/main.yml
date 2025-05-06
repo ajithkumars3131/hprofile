@@ -54,7 +54,10 @@ jobs:
               sed -i "s/^jdbc.password.*$/jdbc.password\=${{ secrets.RDS_PASS }}/" src/main/resources/application.properties
               sed -i "s/db01/${{ secrets.RDS_ENDPOINT }}/" src/main/resources/application.properties
           - name: Set build timestamp
-            run: echo "BUILD_TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+            #run: echo "BUILD_TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+            run:  |
+              echo "BUILD_TIMESTAMP=$(date +%Y%m%d-%H%M%S)" >> $GITHUB_ENV
+              echo "PROJECT_NAME=akworld-hprofile" >> $GITHUB_ENV
           - name: Build & Upload image to ECR
             uses: appleboy/docker-ecr-action@master
             with:
@@ -63,7 +66,7 @@ jobs:
              registry: ${{ secrets.REGISTRY }}
              repo: hprofile
              region: ${{ env.AWS_REGION }}
-             tags: latest,${{ github.run_number }},${{ env.BUILD_TIMESTAMP }}
+             tags: latest,${{ env.PROJECT_NAME }}-${{ github.run_number }},${{ env.PROJECT_NAME }}-${{ env.BUILD_TIMESTAMP }}
              daemon_off: false
              dockerfile: ./Dockerfile
              context: .
