@@ -22,7 +22,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
-    # Run sonar-scanner
+    # Run sonar-scanner with
       - name: Setup SonarQube
         uses: warchant/setup-sonar-scanner@v7
     # Run sonar-scanner
