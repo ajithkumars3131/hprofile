@@ -1,5 +1,5 @@
 {
-    "family": "hprofile-new01",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:810351934067:task-definition/hprofile-new01:1",
     "containerDefinitions": [
         {
             "name": "hprofile-new01",
@@ -35,10 +35,46 @@
             "systemControls": []
         }
     ],
+    "family": "hprofile-new01",
     "executionRoleArn": "arn:aws:iam::810351934067:role/ecsTaskExecutionRole",
     "networkMode": "awsvpc",
+    "revision": 1,
     "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.28"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
     "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
     "requiresCompatibilities": [
         "FARGATE"
     ],
@@ -48,5 +84,8 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "enableFaultInjection": false
+    "registeredAt": "2025-05-06T14:43:31.872Z",
+    "registeredBy": "arn:aws:iam::810351934067:root",
+    "enableFaultInjection": false,
+    "tags": []
 }
